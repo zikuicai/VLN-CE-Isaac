@@ -14,7 +14,7 @@ The VLN-CE-Isaac Benchmark is a framework for evaluating Visual Language Navigat
 ## Installation
 
 ### Prerequisites
-- Ubuntu 20.04 or higher
+- Ubuntu 22.04
 - NVIDIA GPU with CUDA support (check [here](https://docs.omniverse.nvidia.com/isaacsim/latest/installation/requirements.html) for more detailed requirements)
 
 ### Steps
@@ -27,9 +27,14 @@ The VLN-CE-Isaac Benchmark is a framework for evaluating Visual Language Navigat
 
 2. Make sure that Isaac Sim is installed on your machine. Otherwise follow [this guideline](https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html) to install it. If installing via the Omniverse Launcher, please ensure that Isaac Sim 4.1.0 is selected and installed. On Ubuntu 22.04 or higher, you could install it via pip:
     ```sh
-    # use version 4.2.0.2
+    # use version 4.2.0.2 instead of 4.1.0 (tested on ubuntu 22.04)
     pip install isaacsim-rl==4.2.0.2 isaacsim-replicator==4.2.0.2 isaacsim-extscache-physics==4.2.0.2 isaacsim-extscache-kit-sdk==4.2.0.2 isaacsim-extscache-kit==4.2.0.2 isaacsim-app==4.2.0.2 --extra-index-url https://pypi.nvidia.com
-    # pip install isaacsim-rl==4.1.0 isaacsim-replicator==4.1.0 isaacsim-extscache-physics==4.1.0 isaacsim-extscache-kit-sdk==4.1.0 isaacsim-extscache-kit==4.1.0 isaacsim-app==4.1.0 --extra-index-url https://pypi.nvidia.com
+
+    # may need to run following if run into error later on
+    sudo apt install --reinstall mesa-utils mesa-va-drivers libgl1-mesa-dri libglx-mesa0
+    sudo prime-select nvidia
+    glxinfo | grep "OpenGL renderer"
+    sudo reboot
     ```
 
 3. Clone Isaac Lab and link the extensions.
@@ -37,6 +42,10 @@ The VLN-CE-Isaac Benchmark is a framework for evaluating Visual Language Navigat
     **Note**: This codebase was tested with Isaac Lab 1.1.0 and may not be compatible with newer versions. Please make sure to use the modified version of Isaac Lab provided below, which includes important bug fixes and updates. As Isaac Lab is under active development, we will consider supporting newer versions in the future.
 
     ```shell
+    # clone THIS_REPO
+    git clone git@github.com:zikuicai/VLN-CE-Isaac.git
+
+    # Clone Isaac Lab and link the extensions
     git clone https://github.com/yang-zj1026/IsaacLab.git
     cd IsaacLab
     cd source/extensions

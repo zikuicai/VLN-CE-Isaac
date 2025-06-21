@@ -29,15 +29,18 @@ The VLN-CE-Isaac Benchmark is a framework for evaluating Visual Language Navigat
     ```sh
     # use version 4.2.0.2 instead of 4.1.0 (tested on ubuntu 22.04)
     pip install isaacsim-rl==4.2.0.2 isaacsim-replicator==4.2.0.2 isaacsim-extscache-physics==4.2.0.2 isaacsim-extscache-kit-sdk==4.2.0.2 isaacsim-extscache-kit==4.2.0.2 isaacsim-app==4.2.0.2 --extra-index-url https://pypi.nvidia.com
-
-    # may need to run following if run into error later on
-    sudo apt install --reinstall mesa-utils mesa-va-drivers libgl1-mesa-dri libglx-mesa0
-    sudo prime-select nvidia
-    glxinfo | grep "OpenGL renderer"
-    sudo reboot
+    ```
+    **Trouble Shooting**
+   
+    If you encounter errors when running python scripts/demo_planner.py, you may need to install the following dependencies:
+    ```sh
+        sudo apt install --reinstall mesa-utils mesa-va-drivers libgl1-mesa-dri libglx-mesa0
+        sudo prime-select nvidia
+        glxinfo | grep "OpenGL renderer"
+        sudo reboot
     ```
 
-3. Clone Isaac Lab and link the extensions.
+4. Clone Isaac Lab and link the extensions.
 
     **Note**: This codebase was tested with Isaac Lab 1.1.0 and may not be compatible with newer versions. Please make sure to use the modified version of Isaac Lab provided below, which includes important bug fixes and updates. As Isaac Lab is under active development, we will consider supporting newer versions in the future.
 
@@ -54,7 +57,7 @@ The VLN-CE-Isaac Benchmark is a framework for evaluating Visual Language Navigat
     cd ../..
     ```
 
-4. Run the Isaac Lab installer script and additionally install rsl rl in this repo.
+5. Run the Isaac Lab installer script and additionally install rsl rl in this repo.
     ```shell
     ./isaaclab.sh -i none
     ./isaaclab.sh -p -m pip install -e {THIS_REPO_DIR}/scripts/rsl_rl
